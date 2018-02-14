@@ -26,7 +26,7 @@ test_requirements = [
 
 setup(
     name='shotatlogging',
-    version='0.0.1',
+    version='0.0.2',
     description="Provide simple way to initialize logging module with default environment",
     long_description=long_description,
     author="Hong-She Liang",
