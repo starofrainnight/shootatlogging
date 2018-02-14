@@ -83,17 +83,17 @@ def setup(
                 "format": default_format,
             },
         },
-        "loggers": {
-            "root": {
-                "level": logging.getLevelName(arguments["level"]),
-                # Inherit default logger 'handlers' settings
-            },
-        },
         "handlers": {
             "console": {
                 "class": "logging.StreamHandler",
                 "stream": "ext://sys.stdout",
                 "formatter": "generic",
+            },
+        },
+        "loggers": {
+            "root": {
+                "level": logging.getLevelName(arguments["level"]),
+                # Inherit default logger 'handlers' settings
             },
         },
 
