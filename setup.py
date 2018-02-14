@@ -10,11 +10,13 @@ with open('README.rst') as readme_file, open('HISTORY.rst') as history_file:
 
 requirements = [
     # TODO: put package requirements here
+    'PyYAML',
 ]
 
 setup_requirements = [
     'pytest-runner',
-    # TODO(starofrainnight): put setup requirements (distutils extensions, etc.) here
+    # TODO(starofrainnight): put setup requirements (distutils extensions,
+    # etc.) here
 ]
 
 test_requirements = [
