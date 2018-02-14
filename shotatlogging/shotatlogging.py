@@ -86,7 +86,7 @@ def setup(
         "loggers": {
             "root": {
                 "level": logging.getLevelName(arguments["level"]),
-                "handlers": ["console"],
+                # Inherit default logger 'handlers' settings
             },
         },
         "handlers": {
@@ -96,6 +96,15 @@ def setup(
                 "formatter": "generic",
             },
         },
+
+        # Default logger's settings (All loggers will use these settings)
+        # They will all use the 'console' handler by default, so you don't
+        # have to add 'console' handler to 'handlers' of loggers
+        'root': {
+            'level': logging.getLevelName(arguments["level"]),
+            'handlers': ['console'],
+        },
+
     }
 
     if os.path.exists(conf_file_path):
