@@ -6,6 +6,33 @@ import logging
 import logging.config
 import yaml
 import os.path
+import copy
+
+
+def merge_dict(dict1, dict2):
+    """
+    Merge dict1 and dict2 just like update() of dict but if the element is a
+    dict we will merge it with the same element inside dict2 and won't replace
+    it directly.
+    """
+
+    # Overwrite same parts in dict1 from dict2
+    for k, v in dict1.items():
+        if k not in dict2:
+            continue
+
+        if not isinstance(v, dict):
+            dict1[k] = dict2[k]
+            continue
+
+        merge_dict(dict1[k], dict2[k])
+
+    # Merge missing parts from dict2
+    for k, v in dict2.items():
+        if (k in dict1) and isinstance(v, dict):
+            continue
+
+        dict1[k] = dict2[k]
 
 
 def setup(
@@ -72,6 +99,6 @@ def setup(
     }
 
     if os.path.exists(conf_file_path):
-        configs.update(yaml.load(open(conf_file_path, 'r')))
+        merge_dict(configs, yaml.load(open(conf_file_path, 'r')))
 
     logging.config.dictConfig(configs)
