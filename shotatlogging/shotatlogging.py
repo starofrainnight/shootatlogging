@@ -35,12 +35,20 @@ def merge_dict(dict1, dict2):
         dict1[k] = dict2[k]
 
 
-def setup(
-        conf_file_path="logging.yml",
-        default_level=logging.INFO,
-        default_format="[%(asctime)s]:%(levelname)s:%(name)s:%(message)s",
-        default_datefmt=None,
-        default_style=None):
+def setup(conf_file_path="logging.yml",
+          conf_env_key='SHOTATLOGGING_CFG'):
+    """
+    Simple way to config python's logging module.
+    """
+
+    default_level = logging.INFO
+    default_format = "[%(asctime)s]:%(levelname)s:%(name)s:%(message)s"
+    default_datefmt = None
+    default_style = None
+
+    # Environment config key will overwrite conf_file_path variable
+    if conf_env_key in os.environ:
+        conf_file_path = os.environ[conf_env_key]
 
     # Override default values by environment
     arguments = {
