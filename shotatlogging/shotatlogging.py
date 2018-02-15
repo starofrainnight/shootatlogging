@@ -6,7 +6,6 @@ import logging
 import logging.config
 import yaml
 import os.path
-import copy
 
 
 def merge_dict(dict1, dict2):
