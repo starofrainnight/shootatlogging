@@ -35,8 +35,8 @@ def merge_dict(dict1, dict2):
         dict1[k] = dict2[k]
 
 
-def setup(conf_file_path="logging.yml",
-          conf_env_key='SHOTATLOGGING_CFG'):
+def setup(cfg_file_path="logging.yml",
+          cfg_env_key='SHOTATLOGGING_CFG'):
     """
     Simple way to config python's logging module.
     """
@@ -46,9 +46,9 @@ def setup(conf_file_path="logging.yml",
     default_datefmt = None
     default_style = None
 
-    # Environment config key will overwrite conf_file_path variable
-    if conf_env_key in os.environ:
-        conf_file_path = os.environ[conf_env_key]
+    # Environment config key will overwrite cfg_file_path variable
+    if cfg_env_key in os.environ:
+        cfg_file_path = os.environ[cfg_env_key]
 
     # Override default values by environment
     arguments = {
@@ -115,7 +115,7 @@ def setup(conf_file_path="logging.yml",
 
     }
 
-    if os.path.exists(conf_file_path):
-        merge_dict(configs, yaml.load(open(conf_file_path, 'r')))
+    if os.path.exists(cfg_file_path):
+        merge_dict(configs, yaml.load(open(cfg_file_path, 'r')))
 
     logging.config.dictConfig(configs)
