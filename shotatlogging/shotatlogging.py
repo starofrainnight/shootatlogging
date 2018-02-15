@@ -42,7 +42,7 @@ def setup(cfg_file_path="logging.yml",
     """
 
     default_level = logging.INFO
-    default_format = "[%(asctime)s]:%(levelname)s:%(name)s:%(message)s"
+    default_format = logging.BASIC_FORMAT
     default_datefmt = None
     default_style = None
 
