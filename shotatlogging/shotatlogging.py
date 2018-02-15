@@ -43,42 +43,12 @@ def setup(cfg_file_path="logging.yml",
 
     default_level = logging.INFO
     default_format = logging.BASIC_FORMAT
-    default_datefmt = None
-    default_style = None
 
     # Environment config key will overwrite cfg_file_path variable
     if cfg_env_key in os.environ:
         cfg_file_path = os.environ[cfg_env_key]
 
-    # Override default values by environment
-    arguments = {
-        'level': default_level,
-        'format': default_format,
-        'datefmt': default_datefmt,
-        'style': default_style,
-    }
-
-    for k in list(arguments.keys()):
-        try:
-            envionment_text = 'PYTHON_LOGGING_%s' % k.upper()
-            if k == 'level':
-                arguments[k] = logging._nameToLevel.get(
-                    os.environ[envionment_text].strip().upper(),
-                    default_level)
-            else:
-                arguments[k] = os.environ[envionment_text]
-        except ValueError:
-            pass
-        except KeyError:
-            pass
-
-    # Remove all arguments that is None value.
-    keys = list(arguments.keys())
-    for k in keys:
-        if arguments[k] is None:
-            del arguments[k]
-
-    logging.basicConfig(**arguments)
+    logging.basicConfig(level=default_level, format=default_format)
 
     # Default configs
     configs = {
@@ -100,7 +70,7 @@ def setup(cfg_file_path="logging.yml",
         },
         "loggers": {
             "root": {
-                "level": logging.getLevelName(arguments["level"]),
+                "level": logging.getLevelName(default_level),
                 # Inherit default logger 'handlers' settings
             },
         },
@@ -109,7 +79,7 @@ def setup(cfg_file_path="logging.yml",
         # They will all use the 'console' handler by default, so you don't
         # have to add 'console' handler to 'handlers' of loggers
         'root': {
-            'level': logging.getLevelName(arguments["level"]),
+            'level': logging.getLevelName(default_level),
             'handlers': ['console'],
         },
 
