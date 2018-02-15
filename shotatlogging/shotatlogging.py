@@ -85,6 +85,6 @@ def setup(cfg_file_path="logging.yml",
     }
 
     if os.path.exists(cfg_file_path):
-        merge_dict(configs, yaml.load(open(cfg_file_path, 'r')))
+        merge_dict(configs, yaml.safe_load(open(cfg_file_path, 'r')))
 
     logging.config.dictConfig(configs)
