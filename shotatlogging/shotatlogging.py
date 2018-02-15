@@ -38,6 +38,16 @@ def setup(cfg_file_path="logging.yml",
           cfg_env_key='SHOTATLOGGING_CFG'):
     """
     Simple way to config python's logging module.
+
+    It provided these features:
+
+    1. Load configs from a YAML file, it's more easy than writting an INI file
+    style configure file.
+
+    2. Environment variable that override configure file path in script, that
+    help lots while we have some temporary changes for logging settings.
+
+    3. Provided default ready for logging environment.
     """
 
     default_level = logging.INFO
