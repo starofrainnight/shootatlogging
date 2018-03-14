@@ -44,7 +44,7 @@ def setup(cfg_file_path="logging.yml",
 
     It provided these features:
 
-    1. Load configs from a YAML file, it's more easy than writting an INI file
+    1. Load config from a YAML file, it's more easy than writting an INI file
     style configure file.
 
     2. Environment variable that override configure file path in script, that
@@ -62,8 +62,8 @@ def setup(cfg_file_path="logging.yml",
 
     logging.basicConfig(level=default_level, format=default_format)
 
-    # Default configs
-    configs = {
+    # Default config
+    config = {
         "version": 1,
         # Don't disable existing loggers, so global logger that in other
         # modules will still valid after setup()
@@ -98,13 +98,13 @@ def setup(cfg_file_path="logging.yml",
     }
 
     if os.path.exists(cfg_file_path):
-        merge_dict(configs, yaml.safe_load(open(cfg_file_path, 'r')))
+        merge_dict(config, yaml.safe_load(open(cfg_file_path, 'r')))
 
-    logging.config.dictConfig(configs)
+    logging.config.dictConfig(config)
 
     # Backup configurations to global area
     global _CONFIG
-    _CONFIG = configs
+    _CONFIG = config
 
 
 def modify(config):
