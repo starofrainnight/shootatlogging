@@ -2,10 +2,13 @@
 
 """Main module."""
 
+import copy
 import logging
 import logging.config
 import yaml
 import os.path
+
+_CONFIG = None
 
 
 def merge_dict(dict1, dict2):
@@ -98,3 +101,21 @@ def setup(cfg_file_path="logging.yml",
         merge_dict(configs, yaml.safe_load(open(cfg_file_path, 'r')))
 
     logging.config.dictConfig(configs)
+
+    # Backup configurations to global area
+    global _CONFIG
+    _CONFIG = configs
+
+
+def modify(config):
+    """Modify part of current logging configurations
+
+    :param config: The configurations which need to overwrite existed.
+    :type config: dict
+    """
+
+    global _CONFIG
+
+    new_config = copy.deepcopy(_CONFIG)
+    logging.config.dictConfig(new_config)
+    _CONFIG = merge_dict(new_config, config)
