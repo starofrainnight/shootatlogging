@@ -4,24 +4,18 @@ shotatlogging
 
 
 .. image:: https://img.shields.io/pypi/v/shotatlogging.svg
-        :target: https://pypi.python.org/pypi/shotatlogging
+    :target: https://pypi.python.org/pypi/shotatlogging
 
-.. image:: https://img.shields.io/travis/starofrainnight/shotatlogging.svg
-        :target: https://travis-ci.org/starofrainnight/shotatlogging
+.. image:: https://travis-ci.org/starofrainnight/shotatlogging.svg?branch=master
+    :target: https://travis-ci.org/starofrainnight/shotatlogging
 
-.. image:: https://readthedocs.org/projects/shotatlogging/badge/?version=latest
-        :target: https://shotatlogging.readthedocs.io/en/latest/?badge=latest
-        :alt: Documentation Status
-
-.. image:: https://pyup.io/repos/github/starofrainnight/shotatlogging/shield.svg
-     :target: https://pyup.io/repos/github/starofrainnight/shotatlogging/
-     :alt: Updates
-
+.. image:: https://ci.appveyor.com/api/projects/status/github/starofrainnight/shotatlogging?svg=true
+    :target: https://ci.appveyor.com/project/starofrainnight/shotatlogging
 
 Provide simple way to initialize logging module with default environment
 
 
-* Free software: Apache-2.0
+* License: Apache-2.0
 * Documentation: https://shotatlogging.readthedocs.io.
 
 
