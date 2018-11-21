@@ -8,6 +8,7 @@ import logging.config
 import yaml
 import os.path
 
+# Logging config backup
 _CONFIG = None
 
 
@@ -81,15 +82,16 @@ def setup(cfg_file_path="logging.yml",
             },
         },
         "loggers": {
-            "root": {
-                "level": logging.getLevelName(default_level),
-                # Inherit default logger 'handlers' settings
-            },
         },
 
         # Default logger's settings (All loggers will use these settings)
         # They will all use the 'console' handler by default, so you don't
         # have to add 'console' handler to 'handlers' of loggers
+        #
+        # If you get a logger with name as None, the root logger with this
+        # settings will be return.
+        #
+        # NOTICE: root logger is different from a logger with name "root"!
         'root': {
             'level': logging.getLevelName(default_level),
             'handlers': ['console'],
