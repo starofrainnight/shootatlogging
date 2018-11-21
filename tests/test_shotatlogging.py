@@ -6,9 +6,6 @@
 import pytest
 
 
-from shotatlogging import shotatlogging
-
-
 @pytest.fixture
 def response():
     """Sample pytest fixture.
